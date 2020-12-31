@@ -43,7 +43,7 @@ const editUser = {
     async resolve(parent, args) {
 
         return new Promise((resolve, reject) => {
-            modelUser.findOneAndUpdate({ "_id": mongoose.Types.ObjectId(args.id) }, { "$set": args }, { new: true }).exec((err, resp) => {
+            modelUser.findOneAndUpdate({ "_id": new mongoose.Types.ObjectId(args.id) }, { "$set": args }, { new: true }).exec((err, resp) => {
                 if (err) reject(new ApolloError("Bad Request", 400));
                 else resolve(resp);
             });
