@@ -17,8 +17,8 @@ mongoConnection.connectionDB();
 
 const server = new ApolloServer({
     schema,
-    // introspection: true,
-    // playground: true,
+    introspection: true,
+    playground: true,
     formatError: (err) => ({
         message: err.message,
         code: err.extensions.code,
