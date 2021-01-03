@@ -9,15 +9,15 @@ Esta API se realizó para el proceso de control de mesa de casino
   Crear archivo _.env_ con la siguiente estructura de datos
 
   ```sh
-  DB_HOST = 
-  DB_PORT = 
-  DB_USER = 
-  DB_PASS =
-  DB_NAME = 
+  DB_HOST = //Host de la base de datos MongoDB
+  DB_PORT = //Puerto de conexión a la base de datos MongoDB
+  DB_USER = //Usuario de conexión
+  DB_PASS = //Password del Usuario
+  DB_NAME = //Nombre de la base de datos MongoDB
   NODE_ENV = production
 
-  URL_DOMAIN = http://localhost
-  URL_PORT = 3000
+  URL_DOMAIN = //Example: http://localhost
+  URL_PORT = //Example: 3000
   ```
 
   - Paso 2:
@@ -26,9 +26,9 @@ Esta API se realizó para el proceso de control de mesa de casino
 
   ```sh
   db.getCollection('colors').insertMany([
-    { name: "Verde", percentaje: 1, gain: 10 },
-    { name: "Rojo", percentaje: 49.5, gain: 2 },
-    { name: "Negro", percentaje: 49.5, gain: 2 }
+    { "name": "Verde", "percentaje": 1, "gain": 10 },
+    { "name": "Rojo", "percentaje": 49.5, "gain": 2 },
+    { "name": "Negro", "percentaje": 49.5, "gain": 2 }
   ])
 
   db.getCollection('generators').insertOne({

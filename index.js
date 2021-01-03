@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req, resp) {
     return resp.status(200).json({
         message: 'API GraphQL',
-        author: '@devfko <proyectosevfko@gmailcom>',
+        author: '@devfko <ipe1991@hotmail.com>',
         url_main: `${config.appURL}` + (process.env.NODE_ENV !== 'production' ? ':' + config.appPort : '') + `/graphql`
     });
 });
