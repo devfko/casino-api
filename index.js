@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -48,11 +49,9 @@ app.get('/', expressPlayGround({
 var port = normalizePort(process.env.PORT || process.env.URL_PORT);
 app.set('port', port);
 const httpServer = http.createServer(app);
-// server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen(port, () => {
 
     console.log(`Deployed Server in ${config.appURL}` + (config.appPort ? ':' + config.appPort + '/' : ''));
-    // console.log(`🚀 Subscriptions ready at ws://localhost:${port}${server.subscriptionsPath}`);
 
 });
