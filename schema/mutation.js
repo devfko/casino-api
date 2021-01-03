@@ -3,6 +3,7 @@ const { GraphQLObjectType } = graphql;
 
 const { addUser, editUser, deleteUser } = require('./mutations/user');
 const { addTable } = require('./mutations/table');
+const { leaveChair } = require('./mutations/chair');
 const { addBet } = require('./mutations/bet');
 
 const Mutation = new GraphQLObjectType({
@@ -12,7 +13,8 @@ const Mutation = new GraphQLObjectType({
         editUser,
         deleteUser,
         addTable,
-        addBet
+        addBet,
+        leaveChair
     }
 });
 
