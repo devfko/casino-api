@@ -23,9 +23,16 @@ const userType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         lastname: { type: GraphQLString },
-        user: { type: GraphQLString },
+        username: { type: GraphQLString },
         password: { type: GraphQLString },
         balance: { type: GraphQLFloat },
+        chairs: {
+            type: GraphQLList(chairType),
+            description: 'Object Chair',
+            async resolve(parent, args) {
+                return await modelChair.find({ "username": new mongoose.Types.ObjectId(parent.id) });
+            }
+        }
     })
 });
 
@@ -67,7 +74,7 @@ const chairType = new GraphQLObjectType({
             description: 'Object User',
             async resolve(parent, args) {
                 return await modelUser.findOne({
-                    "_id": new mongoose.Types.ObjectId(parent.user)
+                    "_id": new mongoose.Types.ObjectId(parent.username)
                 });
             }
         },
@@ -96,7 +103,7 @@ const betType = new GraphQLObjectType({
             async resolve(parent, args) {
 
                 return await modelUser.findOne({
-                    "_id": new mongoose.Types.ObjectId(parent.user)
+                    "_id": new mongoose.Types.ObjectId(parent.username)
                 });
             }
         },

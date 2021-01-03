@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const betSchema = new Schema({
-    user: {
+    username: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true

@@ -13,12 +13,12 @@ const addTable = {
     type: typeDefinitons.tableType,
     description: 'Create table',
     args: {
-        user: { type: new GraphQLNonNull(GraphQLString) }
+        username: { type: new GraphQLNonNull(GraphQLString) }
     },
     async resolve(parent, args) {
         /** Se verifica si el usuario tiene una silla activa */
         const validate = await modelChair.find({
-            "user": new mongoose.Types.ObjectId(args.user),
+            "username": new mongoose.Types.ObjectId(args.username),
             "state": 1
         });
 
@@ -34,7 +34,7 @@ const addTable = {
             if (!operation.id) throw new ApolloError("Bad Request", 400);
 
             let newChair = new modelChair({
-                user: args.user,
+                username: args.username,
                 table: operation.id
             });
 

@@ -11,7 +11,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
+    username: {
         type: String,
         required: true,
         unique: true
@@ -33,7 +33,7 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator, {
     code: 409,
-    message: 'El usuario {PATH} ya se encuentra registrado'
+    message: 'El usuario ya se encuentra registrado'
 });
 
 module.exports = mongoose.model('user', userSchema);

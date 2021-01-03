@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID, GraphQLString } = graphql;
 const { ApolloError } = require('apollo-server-express');
 const typeDefinitions = require('./types');
 
@@ -70,6 +70,21 @@ const Query = new GraphQLObjectType({
             async resolve(parent, args) {
                 try {
                     return await modelTable.findById(args.id);
+                } catch (err) {
+                    throw new ApolloError("Bad Request", 400);
+                }
+            }
+        },
+        loginUser: {
+            type: typeDefinitions.userType,
+            description: 'Login User',
+            args: {
+                username: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            async resolve(parent, args) {
+                try {
+                    return await modelUser.findOne({ "$and": [{ "username": args.username }, { "password": args.password }] });
                 } catch (err) {
                     throw new ApolloError("Bad Request", 400);
                 }

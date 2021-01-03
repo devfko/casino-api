@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const chairSchema = new Schema({
-    user: {
+    username: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
@@ -23,7 +23,7 @@ const chairSchema = new Schema({
 });
 
 chairSchema.index({
-    user: 1,
+    username: 1,
     table: 1
 }, { unique: true });
 

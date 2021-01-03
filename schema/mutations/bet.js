@@ -15,15 +15,16 @@ const addBet = {
     type: typeDefinitons.betType,
     description: 'Add bet',
     args: {
-        user: { type: new GraphQLNonNull(GraphQLString) },
+        username: { type: new GraphQLNonNull(GraphQLString) },
         table: { type: new GraphQLNonNull(GraphQLString) },
         color: { type: new GraphQLNonNull(GraphQLString) },
         value: { type: new GraphQLNonNull(GraphQLFloat) }
     },
     async resolve(parent, args) {
-
         let probability = await genBet(args.color, args.value);
         let result = (probability._id == args.color) ? probability.gain * args.value : 0;
+
+        let newBalance = parseFloat(result) - parseFloat(args.value);
 
         let newBet = new modelBet({
             ...args,
@@ -37,7 +38,7 @@ const addBet = {
             if (!betResult.id) throw new ApolloError("Bad Request", 400);
 
             return new Promise((resolve, reject) => {
-                modelUser.findOneAndUpdate({ "_id": new mongoose.Types.ObjectId(args.user) }, { "$inc": { "balance": betResult.profit } }, { new: true }).exec((err, resp) => {
+                modelUser.findOneAndUpdate({ "_id": new mongoose.Types.ObjectId(args.username) }, { "$inc": { "balance": parseFloat(newBalance) } }, { new: true }).exec((err, resp) => {
                     if (err) reject(new ApolloError("Bad Request", 400));
                     else resolve(newBet);
                 });

@@ -12,7 +12,7 @@ const addUser = {
     args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         lastname: { type: new GraphQLNonNull(GraphQLString) },
-        user: { type: new GraphQLNonNull(GraphQLString) },
+        username: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
         balance: { type: GraphQLFloat }
     },
@@ -36,7 +36,7 @@ const editUser = {
         id: { type: new GraphQLNonNull(GraphQLID) },
         name: { type: GraphQLString },
         lastname: { type: GraphQLString },
-        user: { type: GraphQLString },
+        username: { type: GraphQLString },
         password: { type: GraphQLString },
         balance: { type: GraphQLFloat }
     },

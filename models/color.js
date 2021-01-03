@@ -22,7 +22,7 @@ const colorSchema = new Schema({
 
 colorSchema.plugin(uniqueValidator, {
     code: 409,
-    message: 'El color {PATH} ya se encuentra registrado'
+    message: 'El color ya se encuentra registrado'
 });
 
 module.exports = mongoose.model('color', colorSchema);
